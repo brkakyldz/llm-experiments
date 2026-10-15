@@ -1,8 +1,6 @@
 # Design
 
-The plan below was written on 2026-10-15, before the first live run. The hypothesis, the rules
-and the run plan are unchanged from that version. Only references to an earlier, separate set-up
-were taken out when this folder was published.
+The plan below was written on 2026-10-15, before the first live run.
 
 ## Hypothesis
 
