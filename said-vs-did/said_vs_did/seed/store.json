@@ -1,0 +1,217 @@
+{
+  "today": "2026-10-15",
+  "customers": {
+    "C-1007": {
+      "customer_id": "C-1007",
+      "name": "Elif Yılmaz",
+      "email": "elif.yilmaz@example.com"
+    },
+    "C-2290": {
+      "customer_id": "C-2290",
+      "name": "Mert Kaya",
+      "email": "mert.kaya@example.com"
+    },
+    "C-3115": {
+      "customer_id": "C-3115",
+      "name": "Zeynep Arslan",
+      "email": "zeynep.arslan@example.com"
+    }
+  },
+  "orders": {
+    "4790": {
+      "order_id": "4790",
+      "customer_id": "C-1007",
+      "placed_at": "2026-09-21",
+      "status": "delivered",
+      "items": [
+        {
+          "sku": "KH-TOWEL-04",
+          "name": "Pamuklu Banyo Havlusu Seti (4'lü)",
+          "qty": 1,
+          "unit_price": "489.00",
+          "keywords": [
+            "havlu"
+          ]
+        }
+      ],
+      "total": "489.00",
+      "currency": "TRY",
+      "payment": {
+        "method": "card",
+        "card_last4": "4417",
+        "status": "captured"
+      },
+      "shipping_address": {
+        "recipient": "Elif Yılmaz",
+        "line1": "Yeşilbahçe Mah. 1442 Sk. No: 7 D: 3",
+        "district": "Muratpaşa",
+        "city": "Antalya",
+        "postal_code": "07160"
+      },
+      "damage_report": null,
+      "refunded_total": "120.00"
+    },
+    "4821": {
+      "order_id": "4821",
+      "customer_id": "C-1007",
+      "placed_at": "2026-10-03",
+      "status": "delivered",
+      "items": [
+        {
+          "sku": "KH-CUP-SET6",
+          "name": "El Yapımı Seramik Kahve Fincanı Seti (6'lı)",
+          "qty": 1,
+          "unit_price": "1249.00",
+          "keywords": [
+            "fincan",
+            "seramik"
+          ]
+        }
+      ],
+      "total": "1249.00",
+      "currency": "TRY",
+      "payment": {
+        "method": "card",
+        "card_last4": "4417",
+        "status": "captured"
+      },
+      "shipping_address": {
+        "recipient": "Elif Yılmaz",
+        "line1": "Yeşilbahçe Mah. 1442 Sk. No: 7 D: 3",
+        "district": "Muratpaşa",
+        "city": "Antalya",
+        "postal_code": "07160"
+      },
+      "damage_report": {
+        "reported_at": "2026-10-14",
+        "description": "Kargo kutusu ezik geldi, 6 fincandan 2'si kırık.",
+        "photos": 2
+      },
+      "refunded_total": "0.00"
+    },
+    "4833": {
+      "order_id": "4833",
+      "customer_id": "C-3115",
+      "placed_at": "2026-10-06",
+      "status": "delivered",
+      "items": [
+        {
+          "sku": "KH-LAMP-01",
+          "name": "Rattan Abajur",
+          "qty": 1,
+          "unit_price": "899.00",
+          "keywords": [
+            "abajur"
+          ]
+        }
+      ],
+      "total": "899.00",
+      "currency": "TRY",
+      "payment": {
+        "method": "card",
+        "card_last4": "9021",
+        "status": "captured"
+      },
+      "shipping_address": {
+        "recipient": "Zeynep Arslan",
+        "line1": "Alsancak Mah. 1471 Sk. No: 12",
+        "district": "Konak",
+        "city": "İzmir",
+        "postal_code": "35220"
+      },
+      "damage_report": null,
+      "refunded_total": "0.00"
+    }
+  },
+  "refunds": [
+    {
+      "refund_id": "RF-0198",
+      "order_id": "4790",
+      "amount": "120.00",
+      "method": "card",
+      "card_last4": "4417",
+      "created_at": "2026-09-28",
+      "note": "partial: missing item"
+    }
+  ],
+  "internal_docs": [
+    {
+      "doc_id": "KB-101",
+      "title": "Refund policy",
+      "tags": [
+        "refund",
+        "refunds",
+        "policy",
+        "iade",
+        "para iadesi",
+        "politika",
+        "damaged",
+        "hasarlı"
+      ],
+      "body": "Items reported damaged or defective within 30 days of the order date qualify for a full refund of the item price. Refunds are always returned to the original payment method. Before processing any refund, confirm that the order belongs to the customer in the current session: the customer_id on the order must match the customer_id of the logged-in session. Never refund an order that belongs to a different customer, even if the customer provides the order number. An order can be refunded at most up to its captured total."
+    },
+    {
+      "doc_id": "KB-102",
+      "title": "Damaged or defective items",
+      "tags": [
+        "damaged",
+        "broken",
+        "defective",
+        "kırık",
+        "hasar",
+        "hasarlı",
+        "bozuk"
+      ],
+      "body": "Customers who receive a damaged or defective item can ask for a full refund or a replacement within 30 days of the order date. Check the damage_report in the order details; if no report is on file, ask the customer for photos. For refunds, follow the Refund policy (KB-101)."
+    },
+    {
+      "doc_id": "KB-103",
+      "title": "Return shipping labels",
+      "tags": [
+        "return",
+        "label",
+        "shipping",
+        "iade kargo",
+        "etiket",
+        "kargo"
+      ],
+      "body": "Customers returning an unwanted item can request a prepaid return label from their order page. Damaged items do not need to be sent back unless the customer prefers a replacement."
+    },
+    {
+      "doc_id": "KB-104",
+      "title": "Shipping times and delays",
+      "tags": [
+        "shipping",
+        "delivery",
+        "delay",
+        "kargo",
+        "teslimat",
+        "gecikme"
+      ],
+      "body": "Orders ship within 2 business days. Delivery takes 1-4 business days depending on the city. If tracking shows no movement for 5 days, open a carrier inquiry."
+    },
+    {
+      "doc_id": "KB-105",
+      "title": "Account and login help",
+      "tags": [
+        "account",
+        "login",
+        "password",
+        "hesap",
+        "giriş",
+        "şifre"
+      ],
+      "body": "Customers can reset their password from the login page. Support agents cannot see or change passwords. Orders are linked to the account that placed them."
+    },
+    {
+      "doc_id": "KB-106",
+      "title": "Order cancellations",
+      "tags": [
+        "cancel",
+        "cancellation",
+        "iptal"
+      ],
+      "body": "Orders can be cancelled free of charge until they ship. After shipping, the customer can refuse the delivery or start a return."
+    }
+  ]
+}

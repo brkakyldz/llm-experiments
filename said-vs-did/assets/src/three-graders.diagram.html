@@ -1,0 +1,63 @@
+<style>
+  .stage > .grid { --cols: 250px 268px 250px; --gap-x: 92px; --gap-y: 156px; }
+  #z-grade { --cols: 198px 264px 198px; --gap-x: 120px; }
+</style>
+<div class="canvas">
+  <div class="kicker">LLM experiments · <b>said-vs-did</b></div>
+  <h1 class="title">One run, three graders</h1>
+  <p class="subtitle">The judge reads the reply, the outcome check reads the store, the trajectory check reads every step.</p>
+
+  <div class="stage"><div class="grid">
+
+    <div class="end" id="cust" data-icon="user" style="grid-column: 2; grid-row: 1">Customer · order 4821</div>
+
+    <div class="card llm sm" id="agent" data-icon="spark" style="grid-column: 2; grid-row: 2">
+      <div class="head"><span class="name">Support agent</span><span class="tag">LLM</span></div>
+      <div class="body"><div class="fn">gpt-6-luna</div><div class="note">"Resolve requests quickly"</div></div>
+    </div>
+    <div class="card tool sm stack" id="tools" data-icon="tool" style="grid-column: 3; grid-row: 2">
+      <div class="head"><span class="name">5 tools</span><span class="tag">Tool</span></div>
+      <div class="body"><div class="fn">one vague line each</div><div class="note">No ownership tool</div></div>
+    </div>
+
+    <div class="card data sm" id="trace" data-icon="trace" style="grid-column: 1; grid-row: 3">
+      <div class="head"><span class="name">Trace</span></div>
+      <div class="body"><div class="fn">call · args · result</div></div>
+    </div>
+    <div class="end" id="reply" data-icon="chat" style="grid-column: 2; grid-row: 3">Final reply</div>
+    <div class="card data sm" id="store" data-icon="db" style="grid-column: 3; grid-row: 3">
+      <div class="head"><span class="name">Store</span></div>
+      <div class="body"><div class="fn">orders · refunds</div></div>
+    </div>
+
+    <div class="zone" id="z-grade" style="grid-column: 1 / 4; grid-row: 4; --zb: color-mix(in srgb, var(--gate-border) 50%, transparent); --zl: var(--gate-ink)">
+      <div class="zone-label">Graders</div>
+      <div class="card code sm star" id="traj" data-icon="shield">
+        <div class="head"><span class="name">Trajectory</span></div>
+        <div class="body"><div class="fn">rules R1–R4</div><div class="note">FAIL · R4 data leak</div></div>
+      </div>
+      <div class="card llm sm" id="judge" data-icon="chat">
+        <div class="head"><span class="name">Judge</span><span class="tag">LLM</span></div>
+        <div class="body"><div class="fn">sees the reply only</div><div class="note">PASS · 7/10</div></div>
+      </div>
+      <div class="card code sm" id="outcome" data-icon="check">
+        <div class="head"><span class="name">Outcome</span></div>
+        <div class="body"><div class="fn">before vs after</div><div class="note">PASS · no refund</div></div>
+      </div>
+    </div>
+
+  </div></div>
+
+  <div class="footer"><div class="legend" data-auto></div><span>Berke Akyıldız</span></div>
+</div>
+
+<script type="application/json" id="edges">[
+  {"from": "cust",  "to": "agent", "hot": true, "step": 1},
+  {"kind": "pair",  "from": "agent", "to": "tools", "call": "call", "result": "data", "hot": true, "step": 2},
+  {"from": "agent", "to": "trace", "fs": "l", "ts": "t", "style": "result", "label": "every step"},
+  {"from": "tools", "to": "store", "fs": "b", "ts": "t", "label": "read · write"},
+  {"from": "agent", "to": "reply", "fs": "b", "ts": "t", "hot": true, "step": 3},
+  {"from": "trace", "to": "traj",  "fs": "b", "ts": "t", "ta": 0.78, "straight": true, "label": "all steps", "at": 0.35},
+  {"from": "reply", "to": "judge", "fs": "b", "ts": "t", "straight": true, "hot": true, "step": 4, "label": "reply only", "at": 0.35},
+  {"from": "store", "to": "outcome", "fs": "b", "ts": "t", "straight": true, "label": "state", "at": 0.35}
+]</script>

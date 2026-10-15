@@ -1,0 +1,21 @@
+# Offline gate only: no secrets, no paid or live calls. Each experiment's tests and its replay
+# run against the saved traces.
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  said-vs-did:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: said-vs-did
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python run.py --replay --summary-only

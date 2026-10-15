@@ -1,0 +1,4 @@
+openai>=2.0        # live runs with SVD_PROVIDER=openai
+anthropic>=0.40    # only for SVD_PROVIDER=anthropic
+python-dotenv>=1.0
+pytest>=8.0
