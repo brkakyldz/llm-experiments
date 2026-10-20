@@ -1,0 +1,36 @@
+/* Frost: the repo's look. A calm, light blue-white ground, white glass panels that carry the
+   experiment, readable type. The only figure is the reader, a small avatar (art/avatar.jpg,
+   made with an image model, no text in it). Fonts are Windows system fonts (Segoe UI Variable,
+   Cascadia Mono), so the images are rendered on Windows. */
+:root {
+  --ink: #142238; --ink-2: #3d5170; --muted: #6a7d99; --faint: #9aabc2;
+  --blue: #4f74a6; --deep: #253f66;
+  --pass-wrong: #a2452f; --pass-wrong-bg: #f7e4dd; --right: #276b59; --right-bg: #dcefe8;
+  --display: "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --text: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+  --mono: "Cascadia Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--text); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+.scene { position: relative; overflow: hidden;
+  background: radial-gradient(70% 90% at 12% 0%, #ffffff 0%, rgba(255,255,255,0) 60%),
+              linear-gradient(150deg, #f3f7fc 0%, #e3ecf6 45%, #c9d9ec 100%); }
+.scene::before { content: ""; position: absolute; right: -14%; top: -70%; width: 52%; aspect-ratio: 1; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.95); box-shadow: 0 0 60px 12px rgba(255,255,255,.55); pointer-events: none; }
+
+.head { display: flex; align-items: center; gap: 14px; }
+.avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.95), 0 6px 16px rgba(30,55,95,.18); }
+.label { font: 600 11.5px var(--text); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.idx { font: 400 18px var(--display); letter-spacing: .1em; color: var(--muted); }
+
+.panel { position: relative; border-radius: 22px; background: rgba(255,255,255,.82); border: 1px solid #ffffff;
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 18px 40px rgba(30,55,95,.12), 0 2px 6px rgba(30,55,95,.06); }
+.panel.dark { background: linear-gradient(150deg, #2b4772, #1f3557); border-color: rgba(255,255,255,.2); color: #f2f6fc; }
+.panel.dark .label { color: rgba(255,255,255,.7); }
+.chip { display: inline-flex; align-items: center; font: 600 11.5px var(--mono); letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; }
+.chip.wrong { background: var(--pass-wrong-bg); color: var(--pass-wrong); }
+.chip.right { background: var(--right-bg); color: var(--right); }
+.circle { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(37,63,102,.35); display: grid; place-items: center; flex: none; }
+.circle svg { width: 20px; height: 20px; stroke: var(--deep); fill: none; stroke-width: 1.7; stroke-linecap: round; }

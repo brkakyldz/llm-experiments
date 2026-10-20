@@ -1,0 +1,82 @@
+[
+  {
+    "run_id": "trial/W01-bare-01",
+    "item_id": "W01",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "PASS",
+    "reason": "The jug was delivered on September 18, so it is within the 30-day return window; the $48 item refund minus the $6.95 return fee is $41.05 to the original Visa payment method.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The jug was delivered on September 18, so it is within the 30-day return window; the $48 item refund minus the $6.95 return fee is $41.05 to the original Visa payment method.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": {
+      "disagrees_on": [],
+      "resolved_by": null,
+      "accepted": null,
+      "reason_supports_verdict": true
+    }
+  },
+  {
+    "run_id": "trial/W01-explained-01",
+    "item_id": "W01",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "PASS",
+    "reason": "The jug is unused, eligible within 30 days of its September 18 delivery, and not final sale; the $48 price minus the $6.95 return fee is a $41.05 Visa refund, with original shipping excluded.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The jug is unused, eligible within 30 days of its September 18 delivery, and not final sale; the $48 price minus the $6.95 return fee is a $41.05 Visa refund, with original shipping excluded.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": {
+      "disagrees_on": [],
+      "resolved_by": null,
+      "accepted": null,
+      "reason_supports_verdict": true
+    }
+  }
+]

@@ -1,0 +1,57 @@
+/* The frost theme for the architecture-diagram kit: loaded after the kit's tokens.css and kit.css,
+   selected with ?theme=frost. Cards are frosted glass over a cool, luminous scene; the main path is
+   deep blue. The kit's font names point at Windows system fonts. */
+@font-face { font-family: "Kit Sans"; src: local("Segoe UI Variable Text"), local("Segoe UI"); font-weight: 100 900; }
+@font-face { font-family: "Kit Mono"; src: local("Cascadia Mono"); font-weight: 100 900; }
+
+[data-theme="frost"] {
+  --bg: #e6eef7;
+  --dot: transparent;
+  --panel: rgba(255, 255, 255, .22);
+  --panel-border: rgba(255, 255, 255, .7);
+  --card: rgba(255, 255, 255, .62);
+  --hi: rgba(255, 255, 255, .95);
+  --ink: #15233a;
+  --ink-2: #4f6380;
+  --line: #8ea4c2;
+  --hot: #2a4670;
+  --chip-bg: rgba(255, 255, 255, .8);
+  --chip-border: rgba(255, 255, 255, .9);
+
+  --llm-fill: rgba(42, 70, 112, .10);  --llm-border: #2a4670;  --llm-ink: #2a4670;
+  --code-fill: rgba(93, 129, 176, .10); --code-border: #7f9cc2; --code-ink: #43587a;
+  --tool-fill: rgba(255, 255, 255, .3); --tool-border: #b7c6da; --tool-ink: #4f6380;
+  --gate-fill: rgba(63, 143, 122, .10); --gate-border: #6aa897; --gate-ink: #2f7462;
+  --data-fill: rgba(255, 255, 255, .35); --data-border: #a6b8d0; --data-ink: #43587a;
+  --end-fill: rgba(192, 103, 79, .12);  --end-border: #c0674f;  --end-ink: #a24a33;
+}
+
+[data-theme="frost"] .canvas { background: linear-gradient(150deg, #f3f7fc 0%, #e3ecf6 45%, #c9d9ec 100%); }
+[data-theme="frost"] .canvas::before { content: ""; position: absolute; right: -16%; top: -62%; width: 40%; aspect-ratio: 1; border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .9); box-shadow: 0 0 50px 10px rgba(255, 255, 255, .45); pointer-events: none; }
+[data-theme="frost"] .kicker { letter-spacing: .3em; font-family: var(--font-sans); font-size: 14px; }
+[data-theme="frost"] .kicker b { color: var(--hot); font-weight: 500; }
+[data-theme="frost"] .title { font-family: "Segoe UI Variable Display", "Segoe UI", sans-serif; font-weight: 400; letter-spacing: -.03em; font-size: 54px; }
+[data-theme="frost"] .subtitle { font-weight: 400; color: #3d5170; }
+
+[data-theme="frost"] .card { border: 1px solid rgba(255, 255, 255, .85); border-radius: 20px; backdrop-filter: blur(18px) saturate(1.2);
+  background: linear-gradient(150deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .78));
+  box-shadow: inset 0 1px 0 #fff, 0 16px 34px rgba(30, 55, 95, .14); }
+[data-theme="frost"] .card .head { border-radius: 19px 19px 0 0; background: var(--f); border-bottom: 1px solid rgba(255, 255, 255, .7); }
+[data-theme="frost"] .card .head:last-child { border-radius: 19px; }
+[data-theme="frost"] .card .name { font-family: "Segoe UI Variable Display", "Segoe UI", sans-serif; font-weight: 400; }
+[data-theme="frost"] .card .ico { color: var(--b); }
+[data-theme="frost"] .card .tag { border-color: color-mix(in srgb, var(--b) 50%, transparent); }
+[data-theme="frost"] .card.star { border: 1.5px solid #4f74a6; box-shadow: inset 0 1px 0 #fff, 0 16px 34px rgba(30, 55, 95, .14), 0 0 0 5px rgba(79, 116, 166, .14); }
+[data-theme="frost"] .card.stack { box-shadow: inset 0 1px 0 #fff, 0 16px 34px rgba(30, 55, 95, .14),
+  8px -8px 0 -1px rgba(255, 255, 255, .5), 8px -8px 0 0 rgba(255, 255, 255, .85),
+  16px -16px 0 -1px rgba(255, 255, 255, .35), 16px -16px 0 0 rgba(255, 255, 255, .6); }
+
+[data-theme="frost"] .zone { border: 1px solid rgba(255, 255, 255, .75); border-radius: 30px; backdrop-filter: blur(10px);
+  background: linear-gradient(150deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, .10)); }
+[data-theme="frost"] .zone-label { top: -14px; background: rgba(255, 255, 255, .85); border-radius: 999px; padding: 3px 14px;
+  letter-spacing: .26em; font-family: var(--font-sans); font-size: 13px; color: var(--ink-2); }
+[data-theme="frost"] .chip { border-radius: 999px; padding: 3px 11px; backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(30, 55, 95, .1); }
+[data-theme="frost"] .chip.only { padding: 3px; }
+[data-theme="frost"] .chip .n { background: var(--hot); color: #fff; }
+[data-theme="frost"] .legend { font-family: var(--font-sans); }

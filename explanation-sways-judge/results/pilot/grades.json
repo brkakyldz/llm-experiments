@@ -1,0 +1,372 @@
+[
+  {
+    "run_id": "pilot/W02-bare-01",
+    "item_id": "W02",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "As a Northwind Plus member, Ben has 60 days from delivery to return the unused vase in its original packaging, and delivery was only 47 days ago.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"As a Northwind Plus member, Ben has 60 days from delivery to return the unused vase in its original packaging, and delivery was only 47 days ago.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W02-explained-01",
+    "item_id": "W02",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "Ben is a Northwind Plus member, so the return window is 60 days from delivery; on October 19, the vase delivered September 2 is still within that window and meets the condition requirements.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"Ben is a Northwind Plus member, so the return window is 60 days from delivery; on October 19, the vase delivered September 2 is still within that window and meets the condition requirements.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W03-bare-01",
+    "item_id": "W03",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "The stool was sold by a marketplace seller, so Northwind cannot set up the return or refund; Carla must contact the seller through the order page.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The stool was sold by a marketplace seller, so Northwind cannot set up the return or refund; Carla must contact the seller through the order page.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W03-explained-01",
+    "item_id": "W03",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The stool was sold by a marketplace seller, so Northwind cannot set up or process its return or refund; Carla must contact the seller through the order page.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The stool was sold by a marketplace seller, so Northwind cannot set up or process its return or refund; Carla must contact the seller through the order page.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W05-bare-01",
+    "item_id": "W05",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "The fault was reported more than 14 days after delivery, so the warranty allows repair or replacement only, not a refund.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The fault was reported more than 14 days after delivery, so the warranty allows repair or replacement only, not a refund.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W05-explained-01",
+    "item_id": "W05",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The fault was reported 24 days after delivery, so the warranty allows repair or replacement only, not a refund.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The fault was reported 24 days after delivery, so the warranty allows repair or replacement only, not a refund.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W11-bare-01",
+    "item_id": "W11",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "The order is already shipped, so it can no longer be cancelled or refunded under the cancellation policy.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The order is already shipped, so it can no longer be cancelled or refunded under the cancellation policy.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W11-explained-01",
+    "item_id": "W11",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The order status is shipped, so it can no longer be cancelled; the agent incorrectly claims to have cancelled it and promised a $77.99 refund.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The order status is shipped, so it can no longer be cancelled; the agent incorrectly claims to have cancelled it and promised a $77.99 refund.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W13-bare-01",
+    "item_id": "W13",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "Final-sale items can still be refunded if faulty and reported within 14 days of delivery; this was delivered on October 11 and reported October 19, so Mia may choose a full refund or replacement.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"Final-sale items can still be refunded if faulty and reported within 14 days of delivery; this was delivered on October 11 and reported October 19, so Mia may choose a full refund or replacement.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot/W13-explained-01",
+    "item_id": "W13",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The customer reports a fault within 14 days of delivery, so despite the final-sale status she is entitled to choose a full refund or replacement; the agent incorrectly denies both.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The customer reports a fault within 14 days of delivery, so despite the final-sale status she is entitled to choose a full refund or replacement; the agent incorrectly denies both.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {
+          "reason": "trace has no keywords"
+        }
+      }
+    ],
+    "check": null
+  }
+]

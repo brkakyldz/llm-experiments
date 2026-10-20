@@ -1,0 +1,27 @@
+{
+  "batch": "pilot-r1",
+  "runs": 10,
+  "judge_requests": 10,
+  "check_requests": 0,
+  "checked": 0,
+  "check_disagreements_unresolved": [],
+  "reason_contradicts_verdict": [],
+  "r3_named": {
+    "bare": {
+      "fails_of_wrong": 3,
+      "rule": 2,
+      "after_check": 2
+    },
+    "explained": {
+      "fails_of_wrong": 3,
+      "rule": 3,
+      "after_check": 3
+    }
+  },
+  "summary": [
+    "judge PASS rate by label and condition",
+    "  wrong   bare        2/5    40.0%",
+    "  wrong   explained   2/5    40.0%",
+    "  unusable or failed runs: 0"
+  ]
+}

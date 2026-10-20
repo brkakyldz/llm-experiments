@@ -1,0 +1,690 @@
+{
+  "batch": "main",
+  "runs": 240,
+  "judge_requests": 240,
+  "check_requests": 240,
+  "checked": 240,
+  "check_disagreements_unresolved": [],
+  "reason_contradicts_verdict": [
+    "main/C01-bare-03",
+    "main/C03-bare-02",
+    "main/C06-bare-01",
+    "main/C06-bare-02",
+    "main/C08-explained-02",
+    "main/C08-explained-03",
+    "main/C10-bare-02",
+    "main/C10-bare-03",
+    "main/C11-bare-01",
+    "main/C14-bare-01",
+    "main/C15-bare-02",
+    "main/C17-explained-03",
+    "main/W03-bare-02",
+    "main/W07-bare-02",
+    "main/W08-bare-02",
+    "main/W09-bare-01",
+    "main/W10-bare-01",
+    "main/W10-explained-03",
+    "main/W13-bare-01",
+    "main/W13-bare-02",
+    "main/W13-bare-03"
+  ],
+  "r3_named": {
+    "bare": {
+      "fails_of_wrong": 42,
+      "rule": 31,
+      "after_check": 27
+    },
+    "explained": {
+      "fails_of_wrong": 50,
+      "rule": 45,
+      "after_check": 48
+    }
+  },
+  "summary": [
+    "judge PASS rate by label and condition",
+    "  wrong   bare       18/60   30.0%",
+    "  wrong   explained  10/60   16.7%",
+    "  correct bare       19/60   31.7%",
+    "  correct explained  51/60   85.0%",
+    "  unusable or failed runs: 0"
+  ],
+  "outcome": {
+    "outcome": "B",
+    "wrong_diff_pp": -13.3,
+    "correct_diff_pp": 53.3,
+    "flips": [
+      "W08",
+      "W12"
+    ],
+    "reverse_flips": [
+      "W01",
+      "W10",
+      "W13",
+      "W18"
+    ],
+    "rates": {
+      "wrong_bare": {
+        "pass": 18,
+        "usable": 60,
+        "rate": 0.3
+      },
+      "wrong_explained": {
+        "pass": 10,
+        "usable": 60,
+        "rate": 0.1667
+      },
+      "correct_bare": {
+        "pass": 19,
+        "usable": 60,
+        "rate": 0.3167
+      },
+      "correct_explained": {
+        "pass": 51,
+        "usable": 60,
+        "rate": 0.85
+      }
+    },
+    "items": {
+      "C01": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C02": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C03": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C04": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C05": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C06": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C07": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "C08": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "C09": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C10": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C11": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C12": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C13": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C14": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C15": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "C16": {
+        "label": "correct",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "C17": {
+        "label": "correct",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "C18": {
+        "label": "correct",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "C19": {
+        "label": "correct",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "C20": {
+        "label": "correct",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "W01": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "FAIL"
+      },
+      "W02": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "W03": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "FAIL",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "PASS"
+      },
+      "W04": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W05": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W06": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W07": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W08": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "PASS",
+          "PASS",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "W09": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W10": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "FAIL"
+      },
+      "W11": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W12": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "PASS",
+          "PASS"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "PASS"
+      },
+      "W13": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "FAIL"
+      },
+      "W14": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W15": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W16": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W17": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W18": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "PASS",
+          "PASS",
+          "PASS"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "PASS",
+        "explained_majority": "FAIL"
+      },
+      "W19": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      },
+      "W20": {
+        "label": "wrong",
+        "bare_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "explained_verdicts": [
+          "FAIL",
+          "FAIL",
+          "FAIL"
+        ],
+        "bare_majority": "FAIL",
+        "explained_majority": "FAIL"
+      }
+    }
+  }
+}

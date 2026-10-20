@@ -1,0 +1,71 @@
+<style>
+  .canvas { --w: 1600px; --h: 1000px; }
+  .stage > .grid { --cols: 212px 262px 262px 290px 210px; --gap-x: 59px; --gap-y: 96px; }
+  #z-cond { --cols: 1fr; --gap-y: 26px; }
+  #z-rules { --cols: 1fr; --gap-y: 18px; }
+</style>
+<div class="canvas">
+  <div class="kicker">LLM experiment · <b>explanation-sways-judge</b></div>
+  <h1 class="title">Does a good-sounding reason fool the judge?</h1>
+  <p class="subtitle">Every support reply is judged twice, bare and with an explanation added. Code compares each verdict with the reply's label.</p>
+
+  <div class="stage"><div class="grid">
+
+    <div class="card data sm" id="items" data-icon="file" style="grid-column: 1; grid-row: 1">
+      <div class="head"><span class="name">40 replies</span></div>
+      <div class="body"><div class="fn">20 wrong</div><div class="fn">20 correct</div><div class="note">each with its record</div></div>
+    </div>
+
+    <div class="zone" id="z-cond" style="grid-column: 2; grid-row: 1">
+      <div class="zone-label">Two conditions</div>
+      <div class="card code sm" id="bare" data-icon="chat">
+        <div class="head"><span class="name">Bare</span></div>
+        <div class="body"><div class="fn">the reply alone</div></div>
+      </div>
+      <div class="card code sm star" id="expl" data-icon="book">
+        <div class="head"><span class="name">Explained</span></div>
+        <div class="body"><div class="fn">reply + reasoning</div></div>
+      </div>
+    </div>
+
+    <div class="card llm sm stack" id="judge" data-icon="spark" style="grid-column: 3; grid-row: 1">
+      <div class="head"><span class="name">Judge</span><span class="tag">LLM</span></div>
+      <div class="body"><div class="fn">gpt-6-luna · low</div><div class="note">PASS or FAIL + reason, ×3</div></div>
+    </div>
+
+    <div class="zone" id="z-rules" style="grid-column: 4; grid-row: 1">
+      <div class="zone-label">Code rules</div>
+      <div class="card gate sm" id="r1" data-icon="check"><div class="head"><span class="name">R1 · parsed</span></div></div>
+      <div class="card gate sm" id="r2" data-icon="shield"><div class="head"><span class="name">R2 · verdict = label</span></div></div>
+      <div class="card gate sm" id="r3" data-icon="search"><div class="head"><span class="name">R3 · names the fact</span></div></div>
+    </div>
+
+    <div class="card code sm" id="outcome" data-icon="chart" style="grid-column: 5; grid-row: 1">
+      <div class="head"><span class="name">Outcome</span></div>
+      <div class="body"><div class="fn">wrong passed</div><div class="note">explained vs bare</div></div>
+    </div>
+
+    <div class="card data sm" id="traces" data-icon="trace" style="grid-column: 3; grid-row: 2">
+      <div class="head"><span class="name">240 traces</span></div>
+      <div class="body"><div class="fn">40 × 2 × 3 runs</div></div>
+    </div>
+
+    <div class="card llm sm" id="check" data-icon="approve" style="grid-column: 4; grid-row: 2">
+      <div class="head"><span class="name">Second model</span><span class="tag">LLM</span></div>
+      <div class="body"><div class="fn">gpt-6-sol · medium</div><div class="note">agrees with each grade?</div></div>
+    </div>
+
+  </div></div>
+
+  <div class="footer"><div class="legend" data-auto></div><span>Berke Akyıldız</span></div>
+</div>
+
+<script type="application/json" id="edges">[
+  {"from": "items",  "to": "z-cond",  "hot": true, "step": 1},
+  {"from": "z-cond", "to": "judge",   "hot": true, "step": 2},
+  {"from": "judge",  "to": "z-rules", "hot": true, "step": 3},
+  {"from": "r2",     "to": "outcome", "hot": true, "step": 4},
+  {"from": "judge",  "to": "traces",  "fs": "b", "ts": "t", "label": "every run"},
+  {"from": "z-rules","to": "check",   "fs": "b", "ts": "t", "style": "result", "label": "grades"},
+  {"from": "items",  "to": "check",   "fs": "b", "ts": "b", "out": 34, "label": "40 labels, once", "at": 0.45}
+]</script>

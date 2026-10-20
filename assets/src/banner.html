@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="frost.css">
+<style>
+body { width: 1280px; height: 440px; overflow: hidden; }
+.scene { width: 1280px; height: 440px; padding: 40px 48px; display: grid; grid-template-columns: 1fr 560px; gap: 40px; }
+.left { display: flex; flex-direction: column; }
+h1 { font: 350 66px/1 var(--display); letter-spacing: -.04em; margin-top: 44px; }
+.sub { font: 400 21px/1.4 var(--display); color: var(--ink-2); margin-top: 16px; max-width: 520px; }
+.steps { margin-top: auto; display: flex; gap: 22px; }
+.list { display: flex; flex-direction: column; gap: 16px; justify-content: center; }
+.x { padding: 20px 24px; display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; align-items: center; }
+.x .label { grid-column: 1 / -1; font-size: 10.5px; }
+.x h2 { font: 400 24px var(--display); letter-spacing: -.02em; margin-top: 2px; }
+.x p { font-size: 14.5px; line-height: 1.4; color: var(--ink-2); grid-column: 1; }
+.x .num { grid-column: 2; grid-row: 2 / 4; text-align: right; }
+.x .num b { display: block; font: 350 38px/1 var(--display); letter-spacing: -.03em; color: var(--deep); }
+.x .num span { font-size: 12px; color: var(--ink-2); }
+</style></head>
+<body><div class="scene">
+  <div class="left">
+    <div class="head"><img class="avatar" src="art/avatar.jpg" alt=""><span class="label">Berke Akyıldız · 2 experiments</span></div>
+    <h1>llm experiments</h1>
+    <p class="sub">Small experiments on how LLM agents behave at work, graded on the trace as well as the reply.</p>
+    <div class="steps"><span class="label">Record</span><span class="label">Grade</span><span class="label">Check</span><span class="label">Replay</span></div>
+  </div>
+  <div class="list">
+    <div class="panel x">
+      <span class="label">02 · 2026-10-19</span>
+      <h2>explanation-sways-judge</h2>
+      <p>The explanation made the judge more accurate, not easier to fool.</p>
+      <div class="num"><b>51→84%</b><span>verdicts right</span></div>
+    </div>
+    <div class="panel x">
+      <span class="label">01 · 2026-10-15</span>
+      <h2>said-vs-did</h2>
+      <p>A refusal leaked the order; the judge passed it 7/10.</p>
+      <div class="num"><b>4 of 5</b><span>refusals leaked</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

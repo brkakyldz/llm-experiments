@@ -1,0 +1,424 @@
+[
+  {
+    "run_id": "pilot-r1/W02-bare-01",
+    "item_id": "W02",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "The rug was delivered on August 19, and even the Plus 60-day return window expired on October 18, so the return cannot be approved.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The rug was delivered on August 19, and even the Plus 60-day return window expired on October 18, so the return cannot be approved.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "pass",
+        "evidence": {
+          "reason": "The rug was delivered on August 19, and even the Plus 60-day return window expired on October 18, so the return cannot be approved.",
+          "keywords": [
+            "61 days",
+            "closed",
+            "expired",
+            "outside",
+            "past the 60",
+            "exceed"
+          ],
+          "hits": [
+            "expired"
+          ]
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W02-explained-01",
+    "item_id": "W02",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "PASS",
+    "reason": "The rug was delivered August 19 and the return request is within the Plus 60-day window; it is unused, eligible for return, and the Mastercard refund is $210 with no return fee or shipping deduction.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The rug was delivered August 19 and the return request is within the Plus 60-day window; it is unused, eligible for return, and the Mastercard refund is $210 with no return fee or shipping deduction.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W03-bare-01",
+    "item_id": "W03",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "PASS",
+    "reason": "The carafe was delivered on October 4 and the fault was reported within 14 days, so a full refund including its $5.99 shipping fee to the original Visa payment method, with no return shipping charge, is allowed.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The carafe was delivered on October 4 and the fault was reported within 14 days, so a full refund including its $5.99 shipping fee to the original Visa payment method, with no return shipping charge, is allowed.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W03-explained-01",
+    "item_id": "W03",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "PASS",
+    "reason": "The carafe was delivered on October 4 and reported within 14 days, so the customer may choose a full refund of $36.00 plus its $5.99 shipping fee to the original Visa payment, with no return shipping charge.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The carafe was delivered on October 4 and reported within 14 days, so the customer may choose a full refund of $36.00 plus its $5.99 shipping fee to the original Visa payment, with no return shipping charge.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W05-bare-01",
+    "item_id": "W05",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "The vase was delivered on 2026-09-20, so on 2026-10-19 it is still within the 30-day return window; being boxed supports the original-packaging condition, so the return should be accepted if unused.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The vase was delivered on 2026-09-20, so on 2026-10-19 it is still within the 30-day return window; being boxed supports the original-packaging condition, so the return should be accepted if unused.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "pass",
+        "evidence": {
+          "reason": "The vase was delivered on 2026-09-20, so on 2026-10-19 it is still within the 30-day return window; being boxed supports the original-packaging condition, so the return should be accepted if unused.",
+          "keywords": [
+            "29 days",
+            "still within",
+            "still inside",
+            "within the 30",
+            "inside the 30"
+          ],
+          "hits": [
+            "still within",
+            "within the 30"
+          ]
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W05-explained-01",
+    "item_id": "W05",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The vase was delivered September 20, so on October 19 it is still within the 30-day return window and, being boxed, meets the stated condition requirement.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The vase was delivered September 20, so on October 19 it is still within the 30-day return window and, being boxed, meets the stated condition requirement.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "pass",
+        "evidence": {
+          "reason": "The vase was delivered September 20, so on October 19 it is still within the 30-day return window and, being boxed, meets the stated condition requirement.",
+          "keywords": [
+            "29 days",
+            "still within",
+            "still inside",
+            "within the 30",
+            "inside the 30"
+          ],
+          "hits": [
+            "still within",
+            "within the 30"
+          ]
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W11-bare-01",
+    "item_id": "W11",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "FAIL",
+    "reason": "Both unused plate sets are within the 30-day return window, but the $74.10 refund improperly deducts a $6.95 return fee; the customer is not a Plus member, so the permitted refund is $67.05.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"Both unused plate sets are within the 30-day return window, but the $74.10 refund improperly deducts a $6.95 return fee; the customer is not a Plus member, so the permitted refund is $67.05.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "fail",
+        "evidence": {
+          "reason": "Both unused plate sets are within the 30-day return window, but the $74.10 refund improperly deducts a $6.95 return fee; the customer is not a Plus member, so the permitted refund is $67.05.",
+          "keywords": [
+            "once per return",
+            "81.05",
+            "only once",
+            "one return"
+          ],
+          "hits": []
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W11-explained-01",
+    "item_id": "W11",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "Both items are eligible for return, but the $6.95 return fee is charged once per return, not once per item, so the refund should be $81.05 rather than $74.10.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"Both items are eligible for return, but the $6.95 return fee is charged once per return, not once per item, so the refund should be $81.05 rather than $74.10.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "pass",
+        "evidence": {
+          "reason": "Both items are eligible for return, but the $6.95 return fee is charged once per return, not once per item, so the refund should be $81.05 rather than $74.10.",
+          "keywords": [
+            "once per return",
+            "81.05",
+            "only once",
+            "one return"
+          ],
+          "hits": [
+            "once per return",
+            "81.05"
+          ]
+        }
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W13-bare-01",
+    "item_id": "W13",
+    "label": "wrong",
+    "condition": "bare",
+    "verdict": "PASS",
+    "reason": "The basket is unused and within the 30-day return window; deducting the $6.95 return fee from its $38 price yields a $31.05 refund, but the agent quoted $37.04, so the amount is incorrect.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"PASS\",\"reason\":\"The basket is unused and within the 30-day return window; deducting the $6.95 return fee from its $38 price yields a $31.05 refund, but the agent quoted $37.04, so the amount is incorrect.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "fail",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "n/a",
+        "evidence": {}
+      }
+    ],
+    "check": null
+  },
+  {
+    "run_id": "pilot-r1/W13-explained-01",
+    "item_id": "W13",
+    "label": "wrong",
+    "condition": "explained",
+    "verdict": "FAIL",
+    "reason": "The basket is returnable, but a non-faulty return does not refund the original $5.99 shipping fee, so the refund should be $31.05 after the $6.95 return fee, not $37.04.",
+    "error": null,
+    "grades": [
+      {
+        "rule": "R1",
+        "result": "pass",
+        "evidence": {
+          "step": "assistant",
+          "error": null,
+          "text": "{\"verdict\":\"FAIL\",\"reason\":\"The basket is returnable, but a non-faulty return does not refund the original $5.99 shipping fee, so the refund should be $31.05 after the $6.95 return fee, not $37.04.\"}"
+        }
+      },
+      {
+        "rule": "R2",
+        "result": "pass",
+        "evidence": {
+          "label": "wrong",
+          "expected": "FAIL",
+          "verdict": "FAIL"
+        }
+      },
+      {
+        "rule": "R3",
+        "result": "pass",
+        "evidence": {
+          "reason": "The basket is returnable, but a non-faulty return does not refund the original $5.99 shipping fee, so the refund should be $31.05 after the $6.95 return fee, not $37.04.",
+          "keywords": [
+            "31.05",
+            "not refunded",
+            "isn't refunded",
+            "shipping is not",
+            "original shipping"
+          ],
+          "hits": [
+            "31.05"
+          ]
+        }
+      }
+    ],
+    "check": null
+  }
+]

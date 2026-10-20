@@ -1,0 +1,2 @@
+openai>=2.0        # live runs with LLMX_BACKEND=openai
+pytest>=8.0

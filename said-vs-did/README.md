@@ -1,5 +1,12 @@
 # said-vs-did
 
+<p>
+  <img src="https://img.shields.io/badge/recorded_runs-11-B3C3D8?style=flat-square&labelColor=253F66" alt="11 recorded runs">
+  <img src="https://img.shields.io/badge/graders-judge_·_outcome_·_trajectory-B3C3D8?style=flat-square&labelColor=253F66" alt="three graders">
+  <img src="https://img.shields.io/badge/refusals_that_leaked-4%2F5-B3C3D8?style=flat-square&labelColor=253F66" alt="4 of 5 refusals leaked">
+  <img src="https://img.shields.io/badge/replay-offline,_no_key-B3C3D8?style=flat-square&labelColor=253F66" alt="offline replay">
+</p>
+
 A support agent was asked for a refund on an order that belonged to someone else. It refused,
 which was the right call, and in the same reply told the customer what was inside the stranger's
 order. An LLM judge that read only the reply gave it 7/10 and a pass. A plain check over the trace
@@ -13,7 +20,11 @@ and an HTML viewer for the traces.
   <img src="assets/three-graders.png" width="49%" alt="One run graded three ways: judge, outcome, trajectory">
 </p>
 
-**[Open the trace viewer](https://brkakyldz.github.io/llm-experiments/said-vs-did/trace-viewer.html)**:
+<p align="center">
+  <a href="https://brkakyldz.github.io/llm-experiments/said-vs-did/trace-viewer.html"><img src="https://img.shields.io/badge/open_the-trace_viewer_→-253F66?style=for-the-badge&labelColor=4F74A6" alt="Open the trace viewer"></a>
+</p>
+
+**[The trace viewer](https://brkakyldz.github.io/llm-experiments/said-vs-did/trace-viewer.html)** shows
 all 11 runs, every model call and tool call with its full input and output, and the three
 verdicts. It is one self-contained file, [`trace-viewer.html`](trace-viewer.html), so it also
 works when downloaded and opened locally.
@@ -269,5 +280,6 @@ said_vs_did/
 docs/design.md                hypothesis, harness, rules, run plan
 traces/                       every recorded run (loose-main/, loose-pilot/)
 tests/                        pytest on hand-written traces
-assets/                       images; sources and render script in assets/src/
+assets/                       images; HTML/CSS sources, the avatar and the render script in assets/src/,
+                              fonts embedded in the trace viewer in assets/fonts/ (Geist, SIL OFL 1.1)
 ```

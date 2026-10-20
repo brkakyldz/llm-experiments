@@ -1,0 +1,27 @@
+{
+  "batch": "trial",
+  "runs": 2,
+  "judge_requests": 2,
+  "check_requests": 2,
+  "checked": 2,
+  "check_disagreements_unresolved": [],
+  "reason_contradicts_verdict": [],
+  "r3_named": {
+    "bare": {
+      "fails_of_wrong": 0,
+      "rule": 0,
+      "after_check": 0
+    },
+    "explained": {
+      "fails_of_wrong": 0,
+      "rule": 0,
+      "after_check": 0
+    }
+  },
+  "summary": [
+    "judge PASS rate by label and condition",
+    "  wrong   bare        1/1   100.0%",
+    "  wrong   explained   1/1   100.0%",
+    "  unusable or failed runs: 0"
+  ]
+}

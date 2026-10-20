@@ -6,6 +6,7 @@ Everything shown comes from the saved trace files and the repo's own scorer. Mod
 latencies are derived from step timestamps (time between the previous step and this turn's
 first step), so they are approximate."""
 
+import base64
 import copy
 import json
 import sys
@@ -15,6 +16,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "trace-viewer.html"
 TEMPLATE = Path(__file__).with_name("viewer_template.html")
+FONTS = Path(__file__).resolve().parent.parent / "assets" / "fonts"
+AVATAR = Path(__file__).resolve().parent.parent / "assets" / "src" / "art" / "avatar.jpg"
 sys.path.insert(0, str(REPO))
 
 from said_vs_did.evaluators import score  # noqa: E402
@@ -117,6 +120,19 @@ def build_run(path: Path, batch: str) -> dict:
     }
 
 
+def font_faces():
+    """Geist and Geist Mono (SIL OFL 1.1) inlined as data URLs: the page prefers Segoe UI and
+    Cascadia Mono where they are installed and falls back to these, loading nothing."""
+    css = []
+    for family, name in (("Embedded Sans", "Geist-Variable.woff2"), ("Embedded Mono", "GeistMono-Variable.woff2")):
+        f = FONTS / name
+        if f.exists():
+            data = base64.b64encode(f.read_bytes()).decode("ascii")
+            css.append(f'@font-face{{font-family:"{family}";font-weight:100 900;'
+                       f'src:url(data:font/woff2;base64,{data}) format("woff2")}}')
+    return "\n".join(css)
+
+
 runs, groups = [], []
 for batch, scenario, heading in GROUPS:
     ids = []
@@ -128,5 +144,8 @@ for batch, scenario, heading in GROUPS:
 data = {"groups": groups, "runs": runs,
         "default": "loose-main/counterfactual-04"}
 blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
-OUT.write_text(TEMPLATE.read_text(encoding="utf-8").replace("__DATA__", blob), encoding="utf-8")
+avatar = ("data:image/jpeg;base64," + base64.b64encode(AVATAR.read_bytes()).decode("ascii")
+          if AVATAR.exists() else "data:,")
+page = TEMPLATE.read_text(encoding="utf-8").replace("/*__FONTS__*/", font_faces()).replace("__AVATAR__", avatar)
+OUT.write_text(page.replace("__DATA__", blob), encoding="utf-8")
 print(f"{len(runs)} runs -> {OUT} ({OUT.stat().st_size // 1024} KB)")

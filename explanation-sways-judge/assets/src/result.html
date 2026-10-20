@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="frost.css">
+<style>
+:root { --bare: #b3c3d8; --expl: #253f66; }
+body { width: 1080px; height: 1350px; overflow: hidden; }
+.scene { width: 1080px; height: 1350px; padding: 56px 60px 48px; display: flex; flex-direction: column; }
+.bar-top { display: flex; justify-content: space-between; align-items: center; }
+h1 { font: 400 54px/1.1 var(--display); letter-spacing: -.03em; margin-top: 34px; }
+.sub { font-size: 19px; line-height: 1.5; color: var(--ink-2); margin-top: 16px; max-width: 900px; }
+.legend { display: flex; gap: 24px; margin-top: 22px; font-size: 16px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 9px; }
+.key { width: 26px; height: 12px; border-radius: 6px; }
+.panel.chart { margin-top: 26px; padding: 32px 34px 28px; }
+.ptitle { display: flex; justify-content: space-between; align-items: baseline; }
+.ptitle h2 { font: 400 25px var(--display); letter-spacing: -.015em; }
+.plot { position: relative; margin-top: 24px; padding-left: 120px; margin-right: 150px; }
+.track { position: relative; height: 44px; border-radius: 22px; background: #edf2f8; }
+.track + .track { margin-top: 16px; }
+.rl { position: absolute; left: -120px; top: 10px; font-size: 17px; color: var(--ink-2); }
+.fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 22px; }
+.val { position: absolute; top: 5px; white-space: nowrap; font: 400 25px var(--display); padding-left: 14px; }
+.val small { font: 400 14px var(--mono); color: var(--muted); margin-left: 6px; }
+.ticks { position: relative; height: 26px; }
+.ticks span { position: absolute; top: 8px; transform: translateX(-50%); font: 13px var(--mono); color: var(--faint); }
+.note { margin-top: 8px; font-size: 16px; color: var(--ink-2); }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; }
+.tile { padding: 28px 30px 30px; }
+.tile .v { font: 300 72px/1.05 var(--display); letter-spacing: -.04em; margin-top: 8px; }
+.tile .v small { font: 400 17px var(--text); margin-left: 10px; letter-spacing: 0; opacity: .8; }
+.aside { margin-top: 30px; font: 400 24px/1.4 var(--display); color: var(--ink); }
+.aside span { color: var(--pass-wrong); }
+.footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font: 13px var(--mono); color: var(--muted); }
+.footer b { font: 400 18px var(--display); color: var(--ink); }
+</style></head>
+<body><div class="scene">
+  <div class="bar-top">
+    <div class="head"><img class="avatar" src="art/avatar.jpg" alt=""><span class="label">LLM experiment · explanation-sways-judge</span></div>
+    <span class="idx">02</span>
+  </div>
+  <h1>With the agent's explanation added, the judge got more verdicts right.</h1>
+  <p class="sub">An LLM judge (gpt-6-luna, low effort) graded 40 support replies against the store's policy and the customer's record: each reply bare, and with the agent's own explanation added. Three runs each, 240 in all.</p>
+  <div class="legend"><span><i class="key" style="background:var(--bare)"></i>Bare reply</span><span><i class="key" style="background:var(--expl)"></i>Reply + explanation</span></div>
+  <div class="panel chart" id="wrong"></div>
+  <div class="panel chart" id="correct"></div>
+  <div class="tiles">
+    <div class="panel tile"><span class="label">Verdict matched the label · bare</span><div class="v">51%<small>61 of 120 runs</small></div></div>
+    <div class="panel dark tile"><span class="label">Verdict matched the label · explained</span><div class="v">84%<small>101 of 120 runs</small></div></div>
+  </div>
+  <p class="aside">It still talked the judge into <span>2 of the 20 wrong replies</span> (W08, W12).</p>
+  <div class="footer"><span>40 replies × 2 conditions × 3 runs · 0 failed runs</span><b>Berke Akyıldız</b></div>
+</div>
+<script>
+const panels = {
+  wrong: { title: "20 wrong replies: judge said PASS", hint: "lower is better",
+           rows: [["Bare", "bare", 18], ["Explained", "expl", 10]],
+           note: "Each wrong reply's explanation argues for its mistake, the way the agent would." },
+  correct: { title: "20 correct replies: judge said PASS", hint: "higher is better",
+             rows: [["Bare", "bare", 19], ["Explained", "expl", 51]],
+             note: "Bare, the judge often did the count or the arithmetic itself and got it wrong." },
+};
+for (const [id, p] of Object.entries(panels)) {
+  let h = `<div class="ptitle"><h2>${p.title}</h2><span class="label">${p.hint}</span></div><div class="plot">`;
+  for (const [label, key, n] of p.rows) {
+    const pct = n / 60 * 100;
+    h += `<div class="track"><span class="rl">${label}</span><div class="fill" style="width:${pct}%;background:var(--${key})"></div>` +
+         `<span class="val" style="left:${pct}%">${Math.round(pct)}%<small>${n} of 60</small></span></div>`;
+  }
+  h += `<div class="ticks">` + [0, 25, 50, 75, 100].map(t => `<span style="left:${t}%">${t}%</span>`).join("") + `</div></div>`;
+  h += `<div class="note">${p.note}</div>`;
+  document.getElementById(id).innerHTML = h;
+}
+</script>
+</body></html>

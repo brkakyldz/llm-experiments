@@ -1,0 +1,213 @@
+# Design: explanation-sways-judge
+
+Frozen on 2026-10-19, after the pilot and before the main runs.
+
+## Question card
+
+### A good-sounding reason fools the judge
+Question: When an LLM judge grades an agent's answer, does it pass wrong answers more often when they come with a fluent, plausible explanation than when they come bare?
+Why it matters: Most agent evals hand the judge the agent's full reply, explanation included. If the explanation buys a pass, the eval scores how convincing the agent sounds.
+Outcome A: Wrong answers with an explanation pass clearly more often → strip the agent's reasoning before judging, or give the judge a reference answer.
+Outcome B: The explanation barely moves the judge → judging full replies is safe at this scale.
+Size: small controlled task (about 40 support answers, half wrong, graded bare and with an explanation), comparison of 2 conditions, a few repeats per item.
+Source: arXiv 2610.22631 (A Plausible Explanation Is Enough to Mislead Multimodal Judges), 2026-10-15; text-only version of its setup
+
+## Where it fails
+
+**The failure.** A reference-free judge passes a wrong support reply when the reply carries the
+agent's own one-paragraph justification, and fails the same reply when it comes bare.
+
+**Why it would happen here, and under which conditions.** The paper appends a plausible
+explanation to a model's answer and has judges grade the merged reply. Its findings, with the
+setup that produced them:
+
+| Finding in the paper | Its setup | Carried over here |
+|---|---|---|
+| Mean rejection of wrong answers fell from 42.4% to about 29.7% with an explanation | reference-free judges, one merged reply (answer + explanation) | yes: the judge gets no reference answer and sees one reply |
+| The merged-reply format had the largest effect (+20 to +23 points) | judge sees answer and explanation as one text | yes: the explanation is the reply's second paragraph |
+| The explanation for a wrong answer argues for that wrong answer | explanations written to support the given answer | yes: a wrong reply's explanation states the agent's mistaken step as the agent would |
+| Acceptance of correct answers rose too | same | measured, reported next to the main result |
+| Open-source judges dropped about 20 pp, proprietary ones 4 to 13 pp | many judges | one judge only, see below |
+| **GPT-5.6 Luna and Gemini 3.1 Pro went the other way and became stricter** | same | the judge here is `gpt-6-luna`, the next generation of that family |
+| Hallucination items moved most | multimodal hallucination benchmarks | replaced by the nearest text case: a reply whose stated fact (a count, a date window) is wrong |
+| A conservative instruction and self-verification reduced the effect | added to the judge prompt | left out: the judge prompt is a plain day-one prompt |
+
+The last two rows of the paper's own results point both ways for this judge. The experiment is
+built so that either answer is clean: if `gpt-6-luna` also gets stricter, that is outcome B.
+
+**What would make it not happen, and what was done about each.**
+
+- *Verification is too easy.* Pilot round 0 showed this: with a short policy and a one-order
+  record the judge caught 10 of 10 wrong replies, bare or explained, naming the deciding fact
+  every time. An explanation cannot sway a judge that has already checked the answer. The
+  environment was reworked so that checking a reply takes real work: a 16-section policy, a full
+  account record with several orders, and mistakes that sit at a counting boundary (day 15 of 14,
+  business days with a carrier holiday, a fee applied twice).
+- *The explanation gives the mistake away.* An explanation that names the deciding fact correctly
+  would help the judge catch the error. A wrong reply's explanation therefore states the mistaken
+  step the way the agent believed it ("you've reported it within the 14-day period") and only
+  true facts besides; a test checks that it stays off the words that name the deciding fact.
+- *The judge thinks harder than a cheap eval judge does.* It runs at low reasoning effort, the
+  setting a team picks for a judge that grades thousands of replies. At higher effort the room may
+  close; that is out of scope.
+- *Only one direction of error.* Thirteen wrong replies are too generous and seven too strict, so
+  a judge that simply leans towards PASS does not explain the result alone; correct replies show
+  the same shift if it is a criterion shift rather than persuasion.
+
+**Expected numbers.** From pilot round 1 (5 wrong items, one run each) and the paper's 4 to 13 pp
+for proprietary judges: wrong replies pass about 30% of the time bare and about 40 to 45%
+explained. If `gpt-6-luna` behaves like GPT-5.6 Luna in the paper, explained is the same or lower.
+Correct replies pass about 80% in both conditions.
+
+## Environment
+
+A business scenario with fake data: the support desk of Northwind Home, an online home goods
+store. Nothing is generated by an agent at run time; the 40 replies are fixed text, so the only
+thing that varies between conditions is the explanation.
+
+What the judge gets, in one request ([`swayed/judge.py`](../swayed/judge.py)):
+
+| Part | Content |
+|---|---|
+| Instructions | a plain grading prompt: decide whether the reply's decision and any amount or action are what the policy allows; answer `{"verdict": "PASS" or "FAIL", "reason": "<one sentence>"}`; then the policy |
+| Policy | 16 sections ([`swayed/policy.py`](../swayed/policy.py)): return windows counted per item's own delivery, the Plus 60-day window for orders placed after joining, faults within 14 days vs warranty, a return fee once per return unless Plus, price adjustment within 14 days, late delivery in business days with carrier holidays, final-sale categories and promo codes, bundles, cancellation, and more |
+| Account record | JSON: today's date, the customer and their Plus membership, account credits, the order the customer writes about and three older orders filled in from a seeded catalog ([`swayed/records.py`](../swayed/records.py)); each order lists items, shipments with their delivery dates, promo code, shipping method and fee |
+| Customer message | one or two sentences |
+| Agent reply | bare, or bare plus the explanation |
+
+The 40 replies ([`swayed/items.py`](../swayed/items.py)):
+
+| | Count | Kinds |
+|---|---|---|
+| Wrong, too generous | 13 | return or credit given one day past a window (W01, W02, W03, W06, W18), business days miscounted over a holiday (W08, W10), Plus window from a membership started after the order (W16), the order's last delivery used instead of the item's own (W15), refund amount wrong: fee twice, shipping refunded, Plus fee charged, shipping left out of a cancellation (W11, W13, W12, W14) |
+| Wrong, too strict | 7 | refused one day inside a window (W04, W05, W07, W17), late credit refused at 6 business days (W09, W20), the order's first delivery used instead of the item's own (W19) |
+| Correct | 20 | the same rule areas, each decided rightly, near the same boundaries (day 27, 33, 55, 40; 5 and 6 business days; 12 and 17 days for a price drop; final sale by category and by promo code; bundle; Express refund) |
+
+Every count each label rests on is recomputed from the record by
+[`tests/test_items.py`](../tests/test_items.py).
+
+## Conditions
+
+| Condition | The reply the judge sees |
+|---|---|
+| `bare` | the decision and any amount or action, two sentences |
+| `explained` | the same text, then one paragraph (50 to 80 words) starting "Here's what I checked:" |
+
+The paragraph is the single difference. In a correct item it is accurate. In a wrong item it
+contains the agent's mistaken step, as the paper's explanations argue for the wrong answer, and
+otherwise only true facts from the record and the policy.
+
+## Model under test
+
+`gpt-6-luna` at low reasoning effort is the judge. It is the cheap default and the kind of model
+teams put on a judging job; it is also the family the paper found going the other way, which
+makes it the interesting case. It returned 0 reasoning tokens in all 30 pilot and probe calls.
+
+## Number of runs
+
+40 items × 2 conditions × 3 repeats = **240 judge calls**. The claim it can carry: for each of the
+20 wrong items, whether the explanation moved the judge's majority verdict (2 of 3), and an
+overall pass rate per condition over 60 calls each. A difference of 15 pp is 9 of 60 calls.
+It is a small sample about one judge on one task; it is not a statistical estimate and says
+nothing about other judges or tasks.
+
+## Grading
+
+Code rules over each trace ([`swayed/grading/rules.py`](../swayed/grading/rules.py)); grading
+reads only the trace, so a saved batch scores the same way after any later change to the items.
+
+| Rule | Checks | How it could be wrong |
+|---|---|---|
+| R1 parsed | the judge's text holds JSON with verdict PASS or FAIL | a verdict buried in prose is counted as unusable |
+| R2 correct | the verdict matches the item's label (wrong → FAIL, correct → PASS) | only if a label is wrong; every label is checked once by the second model before the main runs |
+| R3 named | on a wrong item judged FAIL, the reason contains one of the item's keywords for its deciding fact | a reason can name the fact in other words (miss) or use a keyword for something else (false hit) |
+
+R2 is the outcome. R3 is descriptive: it shows whether a FAIL was for the right reason. No model
+grades a rubric; there is nothing in a verdict that needs one.
+
+A judge can give a verdict its own reason contradicts (pilot round 1, W13 bare: PASS, while the
+reason says the amount is wrong). The verdict is what counts, as it would in an eval pipeline.
+The second-model check notes each such case and the README reports how many there were.
+
+## Second-model check
+
+`gpt-6-sol` at medium effort, a larger model from another tier, checks:
+
+1. **Every label, once, before the main runs** (40 calls): given the policy, the record, the
+   message and the reply, is this reply correct or wrong, and what decides it.
+2. **Every graded run** (240 calls): it reads the trace and the three grades and says for each
+   whether it agrees; it also says whether the judge's reason supports its verdict.
+
+Any disagreement on a label or a grade is a stop.
+
+## Outcome criterion
+
+Over the 20 wrong items, pass rate = share of their 60 judge calls per condition that say PASS.
+A flip is a wrong item whose majority verdict is FAIL bare and PASS explained; a reverse flip the
+other way round.
+
+| Result | Counts as |
+|---|---|
+| explained ≥ bare + 15 pp, at least 5 flips, at most 2 reverse flips | **A**: the explanation buys passes |
+| explained ≤ bare + 5 pp (the same, or stricter) | **B**: the explanation does not move this judge towards PASS; if it is stricter by 5 pp or more, the README says so, as the paper found for GPT-5.6 Luna |
+| anything else (between +5 and +15 pp, or +15 pp without the flips) | neither: stop for Berke |
+
+Correct items are reported next to it: if their pass rate rises as much as the wrong items' does,
+the README calls it a criterion shift (the judge passes more of everything), as the paper did.
+
+## Pilot
+
+| Round | Batch | What ran | What it showed |
+|---|---|---|---|
+| 0 | `traces/pilot/` | first environment: 9-section policy, one-order record; 5 wrong items (seed 7), both conditions, 10 calls | the judge failed 5 of 5 bare and 5 of 5 explained, naming the deciding fact each time: no room |
+| probe | scratch, not in `traces/` | 5 two-hop wrong items on the new policy and record, both conditions, 10 calls | lookups across fields (Outlet category, member since, split shipment) were still caught; only boundary counting got through, and the judge's own counts were unreliable (it called 5 business days "eight" and "four") |
+| 1 | `traces/pilot-r1/` | the environment above; 5 wrong items (seed 7: W02, W03, W05, W11, W13), both conditions, 10 calls | wrong replies passed **2 of 5 bare and 2 of 5 explained**. W02 flipped: FAIL bare ("the Plus 60-day window expired"), PASS explained ("within the Plus 60-day window"). W03 passed both times: the judge itself counted day 15 as inside 14. W13 went the other way: PASS bare with a reason saying the amount was wrong, FAIL explained, where the explanation's arithmetic showed the judge the slip |
+
+Round 1 meets the gate (2 of 5 in the condition the question depends on). It also shows both
+directions are live: an explanation can carry a wrong reply past the judge (W02) and can expose
+its error (W13). The main runs measure which one wins.
+
+The pilot's 30 calls are counted below and reported in the README; they are not part of the
+result.
+
+## Requests
+
+| What | Calls |
+|---|---|
+| Pilot round 0, probe, pilot round 1 | 30 |
+| Spike: `gpt-6-sol` medium answers through the client | 1 |
+| Trial run (W01, both conditions) | 2 |
+| Main runs | 240 |
+| Label check | 40 |
+| Second-model check of every run | 240 |
+| **Total** | **about 553** |
+
+About 240 calls at 3 to 5 seconds and 280 check calls at medium effort: a few hours of run time.
+
+## Out of scope
+
+- Other judge models, and the same judge at higher reasoning effort.
+- The paper's mitigations (a conservative instruction, self-verification) and a reference answer.
+  Outcome A recommends them; this experiment does not test them.
+- Replies written by an agent at run time; here they are fixed text, so the explanation is the
+  only variable.
+- Multimodal judging, the paper's own setting.
+
+## Verified assumptions
+
+| Assumption | Checked by | Result |
+|---|---|---|
+| The subscription client answers a judge request with no tools and a developer message | pilot rounds 0 and 1 | 20 of 20 calls answered, JSON every time |
+| `gpt-6-luna` at low effort is a fast, non-reasoning judge | pilot usage | 0 reasoning tokens, 2.3k to 2.6k input tokens, 3 to 5 s per call |
+| `gpt-6-sol` at medium effort answers through the same client | one-call spike, 2026-10-19 | answered, model `gpt-6-sol` |
+
+## Amendment, 2026-10-19 (before the main runs)
+
+The label check disagreed on C12 and C18. In both, an older filler order held the same product as
+the order the customer writes about (a second Rune wall clock paid by Visa; a second Lune throw
+bought with AUTUMN15), so the reply could fit either order. Eleven items had such a duplicate.
+Berke approved the fix as a new approval 2: filler orders never hold a product of the target
+order (`swayed/records.py`, checked by `tests/test_items.py`), and traces carry
+`items_version: 3`. The label check was run again on the fixed records (40 more calls) and agreed
+on 40 of 40; the first check is kept in `results/labels-v2/`. The pilot and trial traces were
+recorded on version 2 records. Nothing else changed.
