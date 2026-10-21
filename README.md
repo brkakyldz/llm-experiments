@@ -13,26 +13,10 @@ a viewer for the traces, and a write-up of what happened, including what did not
 
 ## Experiments
 
-<a href="explanation-sways-judge/"><img src="assets/cards/explanation-sways-judge.jpg" width="100%" alt="explanation-sways-judge: the wrong reply W18 passed 3 of 3 bare and failed 3 of 3 with its explanation; across 40 replies wrong replies passed 30% bare and 17% explained, correct replies 32% and 85%"></a>
-
-**[explanation-sways-judge](explanation-sways-judge/)** · 2026-10-19 · Does an LLM judge pass wrong
-answers more often when they come with a fluent explanation? Not this judge. Over 240 calls on 40
-support replies, wrong replies passed less often with the agent's explanation (17% against 30%)
-and correct ones far more often (85% against 32%): the explanation wrote out the dates and amounts
-the judge otherwise miscounted. It still talked the judge into 2 of 20 wrong replies.
-[Write-up](explanation-sways-judge/) ·
-[trace viewer](https://brkakyldz.github.io/llm-experiments/explanation-sways-judge/trace-viewer.html)
-
-<br>
-
-<a href="said-vs-did/"><img src="assets/cards/said-vs-did.jpg" width="100%" alt="said-vs-did: the final reply the judge passed 7/10 next to the trace, where a plain-code rule caught the leak of another customer's order"></a>
-
-**[said-vs-did](said-vs-did/)** · 2026-10-15 · Does grading only an agent's final reply miss what
-it did along the way? A support agent correctly refused a refund on someone else's order, and named
-what was inside that order. An LLM judge reading the reply passed it with 7/10; a plain-code check
-over the trace caught the leak.
-[Write-up](said-vs-did/) ·
-[trace viewer](https://brkakyldz.github.io/llm-experiments/said-vs-did/trace-viewer.html)
+| Date | Experiment | Question | What happened |
+|---|---|---|---|
+| 2026-10-19 | [**explanation-sways-judge**](explanation-sways-judge/) | Does an LLM judge pass wrong answers more often when they come with a fluent explanation? | Not this judge. Over 240 calls on 40 support replies, wrong replies passed less often with the agent's explanation (17% against 30%) and correct ones far more often (85% against 32%). It still talked the judge into 2 of 20 wrong replies. ([trace viewer](https://brkakyldz.github.io/llm-experiments/explanation-sways-judge/trace-viewer.html)) |
+| 2026-10-15 | [**said-vs-did**](said-vs-did/) | Does grading only an agent's final reply miss what it did along the way? | A support agent correctly refused a refund on someone else's order, and named what was inside that order. An LLM judge reading the reply passed it with 7/10; a plain-code check over the trace caught the leak. ([trace viewer](https://brkakyldz.github.io/llm-experiments/said-vs-did/trace-viewer.html)) |
 
 ## How these experiments are run
 
@@ -49,13 +33,12 @@ over the trace caught the leak.
 ```
 explanation-sways-judge/   one experiment: code, traces/, results/, docs/, assets/, trace-viewer.html, README.md
 said-vs-did/               one experiment, same shape
-assets/                    banner and experiment cards for this page; sources in assets/src/
+assets/                    this page's banner; its source in assets/src/
 ```
 
 Each experiment folder is self-contained: it shares no code with the others and runs on its own.
-This page's images are HTML and CSS under `assets/src/`, rendered with
+This page's banner is HTML and CSS under `assets/src/`, rendered with
 `python assets/src/render.py` (Playwright, on Windows for its system fonts). The small robot
-avatar was made with an image model; every word and number in the images is text from the
-experiments' READMEs.
+avatar was made with an image model; every word in the banner is HTML text.
 
 MIT licensed, see [LICENSE](LICENSE).

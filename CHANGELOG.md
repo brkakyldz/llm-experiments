@@ -10,10 +10,9 @@ All notable changes to this project are documented here. Format: [Keep a Changel
   (pilots and trial included), offline replay, tests and the trace viewer.
 
 ### Changed
-- A new look for the repo: light frosted-glass panels that put each experiment's own material up
-  front (the reply the judge read next to what the trace shows), with a small robot avatar made
-  with an image model. The README banner and one card per experiment are rendered from
-  `assets/src/`. Both experiments have their images and trace viewers in the same style, and the
+- A new look for the repo: light frosted-glass panels with a small robot avatar made with an
+  image model. The README banner shows the project and how every experiment is run (record,
+  grade, check, replay), rendered from `assets/src/`; experiments are listed in a table. Both experiments have their images and trace viewers in the same style, and the
   viewers embed Geist (SIL OFL 1.1) as their fallback font.
 
 ## [0.1.0] - 2026-10-15

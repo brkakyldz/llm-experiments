@@ -3,40 +3,37 @@
 <link rel="stylesheet" href="frost.css">
 <style>
 body { width: 1280px; height: 440px; overflow: hidden; }
-.scene { width: 1280px; height: 440px; padding: 40px 48px; display: grid; grid-template-columns: 1fr 560px; gap: 40px; }
+.scene { width: 1280px; height: 440px; padding: 40px 48px; display: grid; grid-template-columns: 1fr 540px; gap: 48px; }
 .left { display: flex; flex-direction: column; }
-h1 { font: 350 66px/1 var(--display); letter-spacing: -.04em; margin-top: 44px; }
-.sub { font: 400 21px/1.4 var(--display); color: var(--ink-2); margin-top: 16px; max-width: 520px; }
-.steps { margin-top: auto; display: flex; gap: 22px; }
-.list { display: flex; flex-direction: column; gap: 16px; justify-content: center; }
-.x { padding: 20px 24px; display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; align-items: center; }
-.x .label { grid-column: 1 / -1; font-size: 10.5px; }
-.x h2 { font: 400 24px var(--display); letter-spacing: -.02em; margin-top: 2px; }
-.x p { font-size: 14.5px; line-height: 1.4; color: var(--ink-2); grid-column: 1; }
-.x .num { grid-column: 2; grid-row: 2 / 4; text-align: right; }
-.x .num b { display: block; font: 350 38px/1 var(--display); letter-spacing: -.03em; color: var(--deep); }
-.x .num span { font-size: 12px; color: var(--ink-2); }
+h1 { font: 350 66px/1 var(--display); letter-spacing: -.04em; margin-top: 64px; }
+.sub { font: 400 21px/1.4 var(--display); color: var(--ink-2); margin-top: 16px; max-width: 540px; }
+.topics { margin-top: auto; display: flex; gap: 22px; }
+.flow { align-self: center; padding: 14px 26px; }
+.step { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: center; padding: 13px 0; }
+.step + .step { border-top: 1px solid rgba(37,63,102,.09); }
+.step + .step::before { content: ""; position: absolute; left: 22.5px; top: -14px; height: 14px; border-left: 1.5px dashed rgba(37,63,102,.3); }
+.step .circle { background: rgba(255,255,255,.9); }
+.step h2 { font: 400 21px var(--display); letter-spacing: -.01em; }
+.step h2 .idx { font-size: 13px; margin-right: 10px; }
+.step p { font-size: 14px; line-height: 1.4; color: var(--ink-2); margin-top: 2px; }
 </style></head>
 <body><div class="scene">
   <div class="left">
-    <div class="head"><img class="avatar" src="art/avatar.jpg" alt=""><span class="label">Berke Akyıldız · 2 experiments</span></div>
+    <div class="head"><img class="avatar" src="art/avatar.jpg" alt=""><span class="label">Berke Akyıldız</span></div>
     <h1>llm experiments</h1>
     <p class="sub">Small experiments on how LLM agents behave at work, graded on the trace as well as the reply.</p>
-    <div class="steps"><span class="label">Record</span><span class="label">Grade</span><span class="label">Check</span><span class="label">Replay</span></div>
+    <div class="topics"><span class="label">Agents</span><span class="label">Tools</span><span class="label">Evals</span><span class="label">Grading</span></div>
   </div>
-  <div class="list">
-    <div class="panel x">
-      <span class="label">02 · 2026-10-19</span>
-      <h2>explanation-sways-judge</h2>
-      <p>The explanation made the judge more accurate, not easier to fool.</p>
-      <div class="num"><b>51→84%</b><span>verdicts right</span></div>
-    </div>
-    <div class="panel x">
-      <span class="label">01 · 2026-10-15</span>
-      <h2>said-vs-did</h2>
-      <p>A refusal leaked the order; the judge passed it 7/10.</p>
-      <div class="num"><b>4 of 5</b><span>refusals leaked</span></div>
-    </div>
+  <div class="panel flow">
+    <div class="step"><span class="circle" data-icon="record"></span>
+      <div><h2><span class="idx">01</span>Record</h2><p>Every model call, tool call and state change, kept as a trace.</p></div></div>
+    <div class="step"><span class="circle" data-icon="grade"></span>
+      <div><h2><span class="idx">02</span>Grade</h2><p>Plain-code rules over the trace; a model only for language.</p></div></div>
+    <div class="step"><span class="circle" data-icon="check"></span>
+      <div><h2><span class="idx">03</span>Check</h2><p>A second model reviews every grade.</p></div></div>
+    <div class="step"><span class="circle" data-icon="replay"></span>
+      <div><h2><span class="idx">04</span>Replay</h2><p>Anyone can re-score the saved runs offline, with no key.</p></div></div>
   </div>
 </div>
+<script src="frost.js"></script>
 </body></html>

@@ -2,12 +2,10 @@
 
     python assets/src/render.py
 
-banner.jpg                          from banner.html
-cards/explanation-sways-judge.jpg   from card-esj.html
-cards/said-vs-did.jpg               from card-svd.html
+banner.jpg   from banner.html
 
-The avatar under art/ (the reader, a small robot) was generated with an image model and
-holds no text. Every word and number is HTML over it, taken from each experiment's README. The
+The avatar under art/ (a small robot) was generated with an image model and holds no text.
+Every word is HTML over it. The
 look is frost.css; fonts are Windows system fonts (Segoe UI Variable, Cascadia Mono), so render on
 Windows. Nothing is loaded from the network."""
 
@@ -20,8 +18,6 @@ ASSETS = SRC.parent
 
 PAGES = [
     ("banner.html", "banner.jpg", 1280, 440),
-    ("card-esj.html", "cards/explanation-sways-judge.jpg", 1280, 660),
-    ("card-svd.html", "cards/said-vs-did.jpg", 1280, 660),
 ]
 
 with sync_playwright() as p:
